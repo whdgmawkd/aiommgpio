@@ -530,29 +530,3 @@ class PWM:
             raise ValueError("Minimum duty is 10 nanoseconds")
         self._duty = duty
         await self._parameter_changed()
-
-
-async def main():
-    mmio = RPiMMIO()
-    # gpio = await mmio.get_gpio(18, GPIO_MODE.ALT_FUNC5)
-    # pwm = await mmio.get_pwm(18, PWM_MODE.HARDWARE)
-    # await pwm.set_frequency(25000)  # 25KHz
-    # await pwm.set_duty(20000)
-    # await pwm.start()
-    # # print(f'PERI: {mmio.peri_mmio._address:x} CLK: {mmio.clk_mmio._address:x}')
-    # print("PWMCTL", f'{mmio.clk_mmio[0xa0].to_u32():08x}')
-    # print("PWMDIV", f'{mmio.clk_mmio[0xa4].to_u32():08x}')
-    # print("PWMCTL", f'{mmio.peri_mmio[0xc000].to_u32():08x}')
-    # print("PWMSTA", f'{mmio.peri_mmio[0xc004].to_u32():08x}')
-    while True:
-        print("PWMRNG1", f'{mmio.peri_mmio[0xc010].to_u32()}')
-        print("PWMDAT1", f'{mmio.peri_mmio[0xc014].to_u32()}')
-        await asyncio.sleep(1)
-    # await pwm.cleanup()
-    # print("PWMRNG2", f'{mmio.peri_mmio[0xc020].to_u32():08x}')
-    # print("PWMDAT2", f'{mmio.peri_mmio[0xc024].to_u32():08x}')
-    # input("Press Enter")
-
-
-if __name__ == '__main__':
-    asyncio.run(main())
